@@ -54,6 +54,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  # Para que busque las imagenes en la carpeta
   assets:
     - assets/images/
 
