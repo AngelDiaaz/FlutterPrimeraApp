@@ -1,82 +1,32 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: 'filas y columnas anidadas',
-    home: Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text('Ejemplo de filas y columnas anidadas'),
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home:
+      Center(
+        child:
+        Text('Este es un ejemplo de las distintas posibilidades que nos dan los textos',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.deepOrange,
+            fontSize: 25,
+            fontWeight: FontWeight.w200,
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline,
+            decorationStyle: TextDecorationStyle.solid,
+            backgroundColor: Colors.cyan,
+            letterSpacing: 2,
+            height: 2,
+          ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/movil.jpg',
-                      width: 200, height: 200),
-                  Text('\nMóvil'),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/call.jpg',
-                      width: 200, height: 200),
-                  Text('\nLlamar por teléfono'),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/mensaje.jpg',
-                      width: 200, height: 200),
-                  Text('\nEnviar mensaje'),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/instagram.jpg',
-                      width: 200, height: 200),
-                  Text('\nInstagram'),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/whatsapp.jpg',
-                      width: 200, height: 200),
-                  Text('\nWhatsapp'),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/tiktok.jpg',
-                      width: 200, height: 200),
-                  Text('\nTikTok'),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  ));
+    );
+  }
 }
+
