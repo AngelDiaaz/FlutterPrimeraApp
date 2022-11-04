@@ -16,7 +16,7 @@ void main() {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/movil.jpg',
                       width: 200, height: 200),
@@ -29,7 +29,7 @@ void main() {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/call.jpg',
                       width: 200, height: 200),
@@ -37,7 +37,7 @@ void main() {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/mensaje.jpg',
                       width: 200, height: 200),
@@ -50,7 +50,7 @@ void main() {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/instagram.jpg',
                       width: 200, height: 200),
@@ -58,7 +58,7 @@ void main() {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/whatsapp.jpg',
                       width: 200, height: 200),
@@ -66,16 +66,15 @@ void main() {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/tiktok.jpg',
                       width: 200, height: 200),
-                  Text('\nTiktok'),
+                  Text('\nTikTok'),
                 ],
               ),
             ],
           ),
-
         ],
       ),
     ),
