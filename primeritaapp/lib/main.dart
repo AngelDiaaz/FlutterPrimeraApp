@@ -10,38 +10,34 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: AppBar(
               title: Center(
-                child: Text('Ejemplo de Container. Ejercicio 4'),
+                child: Text('Ejemplo de Container. Ejercicio 5'),
               ),
             ),
             body: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      margin: EdgeInsets.all(50),
-                      width: 300,
-                      height: 300,
-                      alignment: Alignment.center,
-                      color: Colors.green,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/images/movil.jpg'),
-                          Text('\nEjemplo de un container 1'),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.all(50),
-                      width: 300,
-                      height: 300,
-                      alignment: Alignment.center,
-                      color: Colors.red,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/images/call.jpg'),
-                          Text('\nEjemplo de un container 2'),
-                        ],
-                      ))
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                            color: Colors.blue,
+                            width: 300,
+                            height: 300,
+                            child: Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.skewY(0.3)
+                                  ..rotateZ(10 / 20.0),
+                                child: Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  color: Colors.amberAccent,
+                                  child: Column(
+                                    children: [
+                                      Image.asset('assets/images/whatsapp.jpg', width: 240, height: 240,),
+                                      Text('\nEjemplo de un container con transform'),
+                                    ],
+                                  ),
+                                ))),
+                      ])
                 ])));
   }
 }
