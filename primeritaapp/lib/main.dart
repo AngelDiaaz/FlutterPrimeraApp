@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/movil.jpg'),
+                          Image.asset('assets/images/tiktok.jpg', width: 200, height: 200),
                           Text('\nEjemplo de un container 1'),
                         ],
                       )),
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/call.jpg'),
+                          Image.asset('assets/images/instagram.jpg', width: 200, height: 200),
                           Text('\nEjemplo de un container 2'),
                         ],
                       ))
