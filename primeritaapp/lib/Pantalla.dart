@@ -28,19 +28,19 @@ class MenuLateral extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text("Calendario"),
+            title: const Text("Calendario"),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Horario"),
+            title: const Text("Horario"),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Pilotos"),
+            title: const Text("Pilotos"),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Escuderias"),
+            title: const Text("Escuderias"),
             onTap: () {},
           )
         ],
