@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Probando drawer',
         home: Scaffold(
             appBar: AppBar(
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
                 child: Text('Ejercicio 7'),
               ),
             ),
-            drawer: MenuLateral(),
+            drawer: const MenuLateral(),
             body: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      margin: EdgeInsets.all(50),
+                      margin: const EdgeInsets.all(50),
                       width: 300,
                       height: 300,
                       alignment: Alignment.center,
@@ -30,11 +31,11 @@ class MyApp extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/movil.jpg'),
-                          Text('\nEjemplo de un container 1'),
+                          const Text('\nEjemplo de un container 1'),
                         ],
                       )),
                   Container(
-                      margin: EdgeInsets.all(50),
+                      margin: const EdgeInsets.all(50),
                       width: 300,
                       height: 300,
                       alignment: Alignment.center,
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/call.jpg'),
-                          Text('\nEjemplo de un container 2'),
+                          const Text('\nEjemplo de un container 2'),
                         ],
                       ))
                 ])));

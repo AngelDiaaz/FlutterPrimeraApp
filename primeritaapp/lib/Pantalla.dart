@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MenuLateral extends StatelessWidget {
+  const MenuLateral({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return new Drawer(
+    return Drawer(
       child: ListView(
         children: <Widget>[
-          new UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             accountName:
                 Text("F1-APP", style: TextStyle(color: Colors.lightBlueAccent)),
             accountEmail: Text("informes@gmail.com",
@@ -18,27 +20,27 @@ class MenuLateral extends StatelessWidget {
           ),
           Ink(
             color: Colors.purple,
-            child: new ListTile(
+            child: const ListTile(
               title: Text(
                 "Coches",
                 style: TextStyle(color: Colors.white),
               ),
             ),
           ),
-          new ListTile(
-            title: Text("Calendario"),
+          ListTile(
+            title: const Text("Calendario"),
             onTap: () {},
           ),
-          new ListTile(
-            title: Text("Horario"),
+          ListTile(
+            title: const Text("Horario"),
             onTap: () {},
           ),
-          new ListTile(
-            title: Text("Pilotos"),
+          ListTile(
+            title: const Text("Pilotos"),
             onTap: () {},
           ),
-          new ListTile(
-            title: Text("Escuderias"),
+          ListTile(
+            title: const Text("Escuderias"),
             onTap: () {},
           )
         ],
