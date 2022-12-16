@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
-import 'Pantalla.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyApp> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _desincrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,39 +32,40 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: AppBar(
               title: const Center(
-                child: Text('Ejercicio 7'),
+                child: Text('Ejercicio 8'),
               ),
             ),
-            drawer: const MenuLateral(),
-            body: Row(
+            body: Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                      margin: const EdgeInsets.all(50),
-                      width: 300,
-                      height: 300,
-                      alignment: Alignment.center,
-                      color: Colors.green,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/images/movil.jpg'),
-                          const Text('\nEjemplo de un container 1'),
-                        ],
-                      )),
-                  Container(
-                      margin: const EdgeInsets.all(50),
-                      width: 300,
-                      height: 300,
-                      alignment: Alignment.center,
-                      color: Colors.red,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/images/call.jpg'),
-                          const Text('\nEjemplo de un container 2'),
-                        ],
-                      ))
-                ])));
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '$_counter',
+                  ),
+                ],
+              ),
+            ),
+            floatingActionButton: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(padding: const EdgeInsets.all(5),
+                child: FloatingActionButton(
+                  onPressed: _desincrementCounter,
+                  tooltip: 'Resta',
+                  child: const Icon(Icons.remove),
+                ),),
+
+                Padding(padding: const EdgeInsets.all(5),
+                  child: FloatingActionButton(
+                    onPressed: _incrementCounter,
+                    tooltip: 'Suma',
+                    child: const Icon(Icons.add),
+                  ),),
+                ],
+              ),
+            ));
   }
 }
