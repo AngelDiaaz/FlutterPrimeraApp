@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Sample App',
+      title: 'Ejercicio 10',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -55,12 +55,12 @@ class _AnimateAppState extends State<AnimateApp>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'AnimateApp',
+        title: 'Ejercicio 10',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.blue),
         home: Scaffold(
             appBar: AppBar(
-              title: const Text('AnimateApp'),
+              title: const Text('Ejercicio 10'),
             ),
             body: Center(
               child: GestureDetector(
