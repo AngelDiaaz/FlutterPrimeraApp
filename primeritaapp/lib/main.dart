@@ -18,6 +18,8 @@ class _RandomColors extends State<RandomColors> {
   int points = 0;
   late String randomName;
   late Color randomColor;
+  late String mensajeFinal = '';
+  late bool fin = false;
   var colorNames = [
     'azul',
     'verde',
@@ -48,10 +50,12 @@ class _RandomColors extends State<RandomColors> {
   }
 
   void timer() {
-    Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-      getRandomColor();
-      getRandomName();
-      setState(() {});
+    Timer.periodic(const Duration(milliseconds: 800), (timer) {
+      if (!fin) {
+        getRandomColor();
+        getRandomName();
+        setState(() {});
+      }
     });
   }
 
@@ -94,6 +98,19 @@ class _RandomColors extends State<RandomColors> {
                   ],
                 ),
               ),
+            ),
+            Text(
+              mensajeFinal,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(minimumSize: const Size(40, 50)),
+              child: const Text('Repetir', style: TextStyle(fontSize: 20)),
+              onPressed: () {
+                fin = false;
+                points = 0;
+                mensajeFinal = '';
+              },
             ),
           ],
         ),
@@ -139,6 +156,16 @@ class _RandomColors extends State<RandomColors> {
       points++;
     } else {
       points--;
+    }
+
+    if (points == 10) {
+      mensajeFinal =
+      'Felicidades has ganado!!!!! Has conseguido los $points puntos';
+      fin = true;
+    } else if (points < 0) {
+      mensajeFinal =
+      'Lo siento has perdido tu puntuación es menor que 0, vuelve a intentarlo';
+      fin = true;
     }
     setState(() {});
   }
