@@ -66,11 +66,13 @@ class HomeWidget extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.indigo,
-        minimumSize: const Size(50, 50),// Background color
+        minimumSize: const Size(50, 50), // Background color
       ),
       child: const Text('Guardar', style: TextStyle(fontSize: 18)),
     ));
-    _widgets.add(const SizedBox(height: 200,));
+    _widgets.add(const SizedBox(
+      height: 200,
+    ));
   }
 
   TextFormField _createTextFormField(
@@ -83,10 +85,14 @@ class HomeWidget extends StatelessWidget {
             return 'El número introducido es mayor';
           } else if (int.parse(value) < _numero) {
             return 'El número introducido es menor';
-          } else if (int.parse(value) == _numero){
+          } else if (int.parse(value) == _numero) {
             _widgets.add(const Center(
-                child: Text('Enhorabuena has acertado el número!!!',
-                  style: TextStyle(fontSize: 20,),)));
+                child: Text(
+              'Enhorabuena has acertado el número!!!',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            )));
           }
           return null;
         },
