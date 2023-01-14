@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -10,20 +12,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ejemplo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      // ThemeData.light().copyWith(
+      //   appBarTheme: const AppBarTheme(
+      //     color: Colors.indigo,
+      //   )
+      theme: ThemeData.dark().copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.indigo,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blueGrey),
+            borderSide: BorderSide(color: Colors.blueAccent),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green),
+            borderSide: BorderSide(color: Colors.greenAccent),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.deepPurple),
           ),
           labelStyle: TextStyle(
-            color: Colors.blueGrey,
+            color: Colors.white,
           ),
         ),
       ),
@@ -36,11 +44,11 @@ class HomeWidget extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final List<TextEditingController> _textEditingControllers = [];
   final List<Widget> _widgets = [];
+  final _numero = Random().nextInt(99 - 1) + 1;
 
   HomeWidget({Key? key}) : super(key: key) {
     List<String> fieldNames = [
-      "Nombre",
-      "Constraseña",
+      "Número",
     ];
     for (int i = 0; i < fieldNames.length; i++) {
       String fieldName = fieldNames[i];
@@ -48,7 +56,7 @@ class HomeWidget extends StatelessWidget {
           TextEditingController(text: "");
       _textEditingControllers.add(textEditingController);
       _widgets.add(Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(30.0),
         child: _createTextFormField(fieldName, textEditingController),
       ));
     }
@@ -56,8 +64,13 @@ class HomeWidget extends StatelessWidget {
       onPressed: () {
         _formKey.currentState?.validate();
       },
-      child: const Text('Guardar'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.indigo,
+        minimumSize: const Size(50, 50),// Background color
+      ),
+      child: const Text('Guardar', style: TextStyle(fontSize: 18)),
     ));
+    _widgets.add(const SizedBox(height: 200,));
   }
 
   TextFormField _createTextFormField(
@@ -65,26 +78,25 @@ class HomeWidget extends StatelessWidget {
     return TextFormField(
         validator: (value) {
           if (value!.isEmpty) {
-            return 'Por favor, introduzca $fieldName.';
-          } else if (fieldName == 'Nombre' &&
-              !(RegExp(r"^([A-Z][a-zñáéíóú]+\s*)+$")
-                  .hasMatch(value))) {
-            return 'El nombre debe empiezaz por una letra '
-                '\nmayúscula, y que los caracteres que '
-                '\nle siguien son minúsculas';
-          } else if (fieldName == 'Constraseña' &&
-              !(RegExp(r"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$")
-                  .hasMatch(value))) {
-            return 'La contraseña debe tener al entre 8 y '
-                '\n16 caracteres, al menos un dígito, al '
-                '\nmenos una minúscula y al menos \nuna mayúscula.';
+            return 'Por favor, introduzca algún número.';
+          } else if (int.parse(value) > _numero) {
+            return 'El número introducido es mayor';
+          } else if (int.parse(value) < _numero) {
+            return 'El número introducido es menor';
+          } else if (int.parse(value) == _numero){
+            _widgets.add(const Center(
+                child: Text('Enhorabuena has acertado el número!!!',
+                  style: TextStyle(fontSize: 20,),)));
           }
           return null;
         },
         decoration: InputDecoration(
-            icon: const Icon(Icons.person),
+            icon: const Icon(Icons.numbers),
             hintText: fieldName,
-            labelText: 'Introduzca $fieldName'),
+            labelText: 'Introduzca un $fieldName'),
+        style: const TextStyle(
+          fontSize: 18,
+        ),
         controller: controller);
   }
 
