@@ -67,8 +67,7 @@ class HomeWidget extends StatelessWidget {
           if (value!.isEmpty) {
             return 'Por favor, introduzca $fieldName.';
           } else if (fieldName == 'Nombre' &&
-              !(RegExp(r"^([A-Z][a-zñáéíóú]+\s*)+$")
-                  .hasMatch(value))) {
+              !(RegExp(r"^([A-Z][a-zñáéíóú]+\s*)+$").hasMatch(value))) {
             return 'El nombre debe empiezaz por una letra '
                 '\nmayúscula, y que los caracteres que '
                 '\nle siguien son minúsculas';
