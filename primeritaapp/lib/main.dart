@@ -1,172 +1,106 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
-import 'dart:async';
 
-void main() {
-  runApp(const RandomColors());
-}
+void main() => runApp(const MyApp());
 
-class RandomColors extends StatefulWidget {
-  const RandomColors({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _RandomColors createState() => _RandomColors();
-}
-
-class _RandomColors extends State<RandomColors> {
-  int points = 0;
-  late String randomName;
-  late Color randomColor;
-  late String mensajeFinal = '';
-  late bool fin = false;
-  var colorNames = [
-    'azul',
-    'verde',
-    'naranja',
-    'rosa',
-    'rojo',
-    'amarillo',
-    'negro',
-    'morado'
-  ];
-  var colorHex = [
-    const Color(0xFF0000FF),
-    const Color(0xFF00FF00),
-    const Color(0xFFFF914D),
-    const Color(0xFFFF66C4),
-    const Color(0xFFFF0000),
-    const Color(0xFFFBC512),
-    Colors.black,
-    Colors.purple,
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    getRandomColor();
-    getRandomName();
-    timer();
-  }
-
-  void timer() {
-    Timer.periodic(const Duration(milliseconds: 800), (timer) {
-      if (!fin) {
-        getRandomColor();
-        getRandomName();
-        setState(() {});
-      }
-    });
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text('Ejercicio 11'),
+      title: 'ejemplo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blueGrey),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.deepPurple),
+          ),
+          labelStyle: TextStyle(
+            color: Colors.blueGrey,
           ),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Puntos: $points',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  onGiftTap(randomName, randomColor);
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      width: 120,
-                      color: randomColor,
-                      height: 120,
-                    ),
-                    Text(
-                      randomName,
-                      style: TextStyle(
-                          color: randomColor,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Text(
-              mensajeFinal,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: const Size(40, 50)),
-              child: const Text('Repetir', style: TextStyle(fontSize: 20)),
-              onPressed: () {
-                fin = false;
-                points = 0;
-                mensajeFinal = '';
-              },
-            ),
-          ],
-        ),
       ),
+      home: HomeWidget(),
     );
   }
+}
 
-  void getRandomColor() {
-    Random random = Random();
-    int randomNumber = random.nextInt(8);
-    randomColor = colorHex[randomNumber];
+class HomeWidget extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+  final List<TextEditingController> _textEditingControllers = [];
+  final List<Widget> _widgets = [];
+
+  HomeWidget({Key? key}) : super(key: key) {
+    List<String> fieldNames = [
+      "Nombre",
+      "Constraseña",
+    ];
+    for (int i = 0; i < fieldNames.length; i++) {
+      String fieldName = fieldNames[i];
+      TextEditingController textEditingController =
+          TextEditingController(text: "");
+      _textEditingControllers.add(textEditingController);
+      _widgets.add(Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: _createTextFormField(fieldName, textEditingController),
+      ));
+    }
+    _widgets.add(ElevatedButton(
+      onPressed: () {
+        _formKey.currentState?.validate();
+      },
+      child: const Text('Guardar'),
+    ));
   }
 
-  void getRandomName() {
-    Random random = Random();
-    int randomNumber = random.nextInt(8);
-    randomName = colorNames[randomNumber];
+  TextFormField _createTextFormField(
+      String fieldName, TextEditingController controller) {
+    return TextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Por favor, introduzca $fieldName.';
+          } else if (fieldName == 'Nombre' &&
+              !(RegExp(r"^([A-Z][a-zñáéíóú]+\s*)+$")
+                  .hasMatch(value))) {
+            return 'El nombre debe empiezaz por una letra '
+                '\nmayúscula, y que los caracteres que '
+                '\nle siguien son minúsculas';
+          } else if (fieldName == 'Constraseña' &&
+              !(RegExp(r"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$")
+                  .hasMatch(value))) {
+            return 'La contraseña debe tener al entre 8 y '
+                '\n16 caracteres, al menos un dígito, al '
+                '\nmenos una minúscula y al menos \nuna mayúscula.';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+            icon: const Icon(Icons.person),
+            hintText: fieldName,
+            labelText: 'Introduzca $fieldName'),
+        controller: controller);
   }
 
-  String hexToStringConverter(Color hexColor) {
-    if (hexColor == const Color(0xFF0000FF)) {
-      return 'azul';
-    } else if (hexColor == const Color(0xFF00FF00)) {
-      return 'verde';
-    } else if (hexColor == const Color(0xFFFF914D)) {
-      return 'naranja';
-    } else if (hexColor == const Color(0xFFFF66C4)) {
-      return 'rosa';
-    } else if (hexColor == const Color(0xFFFF0000)) {
-      return 'rojo';
-    } else if (hexColor == Colors.black) {
-      return 'negro';
-    } else if (hexColor == Colors.purple) {
-      return 'morado';
-    } else {
-      return 'amarillo';
-    }
-  }
-
-  void onGiftTap(String name, Color color) {
-    var colorToString = hexToStringConverter(color);
-    if (name == colorToString) {
-      points++;
-    } else {
-      points--;
-    }
-
-    if (points == 10) {
-      mensajeFinal =
-      'Felicidades has ganado!!!!! Has conseguido los $points puntos';
-      fin = true;
-    } else if (points < 0) {
-      mensajeFinal =
-      'Lo siento has perdido tu puntuación es menor que 0, vuelve a intentarlo';
-      fin = true;
-    }
-    setState(() {});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Ejemplo de formularios"),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+                key: _formKey,
+                child: ListView(
+                  children: _widgets,
+                ))));
   }
 }
